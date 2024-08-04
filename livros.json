@@ -1,0 +1,21 @@
+[
+  {
+    "QuantidadeDisponivel": 4,
+    "Titulo": "Harry Potter e a Pedra Filosofal",
+    "Autor": "Kj",
+    "Editora": "Warner",
+    "Categoria": "Fantasia",
+    "Avaliacoes": 0.0,
+    "IdLivro": 1,
+    "NumeroDePaginas": 0
+  },
+  {
+    "Titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+    "Autor": "autor2",
+    "Editora": "Amazon",
+    "Categoria": "Fantasia",
+    "Avaliacoes": 0.0,
+    "IdLivro": 2,
+    "NumeroDePaginas": 0
+  }
+]
