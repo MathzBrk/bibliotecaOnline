@@ -56,6 +56,9 @@ public class Main {
 
         biblioteca.buscarLivroNaApiIsbn("9780439139595");
 
+        biblioteca.gerarArquivoDeLivros();
+
+
 
 
 

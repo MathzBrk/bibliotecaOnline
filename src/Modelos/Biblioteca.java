@@ -2,13 +2,7 @@ package Modelos;
 
 import ModeloDeNegocios.Aluguel;
 import ModeloDeNegocios.Emprestimo;
-import ModeloDeNegocios.Transacao;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -189,6 +183,16 @@ public class Biblioteca {
         for (Aluguel aluguel : alugueis) {
             System.out.println(" - Aluguel ID: " + aluguel.getIdTransacao() + ", Livro: " + aluguel.getLivro().getTitulo() + ", Usuário: " + aluguel.getUsuario().getNome());
         }
+    }
+
+    public void gerarArquivoLivro(Livro livro) throws Exception {
+        GeradorDeArquivo geradorDeArquivo = new GeradorDeArquivo();
+        geradorDeArquivo.gerarArquivoDeLivro(livro);
+    }
+
+    public void gerarArquivoDeLivros() throws Exception {
+        GeradorDeArquivo gerador = new GeradorDeArquivo();
+        gerador.gerarArquivoDeLista(getLivros(),"livros.json");
     }
 
 
