@@ -15,7 +15,6 @@ import java.util.List;
 
 public class Biblioteca {
     private List<Livro> livros;
-    private List<Autor> autores;
     private List<Usuario> usuarios;
     private List<Aluguel> alugueis;
     private List<Emprestimo> emprestimos;
@@ -28,13 +27,6 @@ public class Biblioteca {
         this.livros = livros;
     }
 
-    public List<Autor> getAutores() {
-        return autores;
-    }
-
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-    }
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -62,7 +54,6 @@ public class Biblioteca {
 
     public Biblioteca() {
         this.livros = new ArrayList<>();
-        this.autores = new ArrayList<>();
         this.usuarios = new ArrayList<>();
         this.alugueis = new ArrayList<>();
         this.emprestimos = new ArrayList<>();
@@ -72,9 +63,6 @@ public class Biblioteca {
         this.livros.add(livro);
     }
 
-    public void registrarAutor(Autor autor) {
-        this.autores.add(autor);
-    }
     public void registrarUsuario(Usuario usuario) {
         this.usuarios.add(usuario);
     }
@@ -130,8 +118,13 @@ public class Biblioteca {
         System.out.println("Empréstimo não encontrado ou já encerrado.");
     }
 
-    public void buscarLivroNaApi(String titulo){
-        System.out.println("123");
+    public void buscarLivroNaApiIsbn(String isbn){
+
+        OpenLibraryApiExample openLibraryApiExample = new OpenLibraryApiExample();
+        Livro livro = new Livro(openLibraryApiExample.buscarLivroPorISBN(isbn));
+        System.out.println(livro);
+
+
     }
 
     public void listarAluguel(){
@@ -162,18 +155,6 @@ public class Biblioteca {
         }
     }
 
-    public void removerAutor(int idAutor) {
-        Iterator<Autor> iterator = autores.iterator();
-        while (iterator.hasNext()) {
-            Autor autor = iterator.next();
-            if (autor.getIdAutor() == idAutor) {
-                iterator.remove();
-                System.out.println("Autor removido do catálogo.");
-                return; // Saia do método após remover o autor
-            }
-        }
-        System.out.println("Autor não encontrado no catálogo.");
-    }
 
     public void removerUsuario(int idUsuario) {
         Iterator<Usuario> iterator = usuarios.iterator();
@@ -192,11 +173,6 @@ public class Biblioteca {
         System.out.println("Livros na biblioteca:");
         for (Livro livro : livros) {
             System.out.println(" - " + livro.getTitulo());
-        }
-
-        System.out.println("Autores na biblioteca:");
-        for (Autor autor : autores) {
-            System.out.println(" - " + autor.getNome());
         }
 
         System.out.println("Usuários na biblioteca:");

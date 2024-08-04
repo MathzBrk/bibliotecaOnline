@@ -3,7 +3,7 @@ package Modelos;
 public class LivroFisico extends Livro {
     private int quantidadeDisponivel;
 
-    public LivroFisico(String titulo, Autor autor, String editora, String categoria, int quantidadeDisponivel) {
+    public LivroFisico(String titulo, String autor, String editora, String categoria, int quantidadeDisponivel) {
         super(titulo, autor, editora, categoria);
         this.quantidadeDisponivel = quantidadeDisponivel;
     }

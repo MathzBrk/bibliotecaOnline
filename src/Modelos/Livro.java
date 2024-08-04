@@ -1,12 +1,28 @@
 package Modelos;
 
+import java.util.stream.Collectors;
+
 public class Livro implements Classificavel, Comparable<Livro>{
     protected String titulo;
-    protected Autor autor;
+    protected String autor;
     protected String editora;
     protected String categoria;
     protected double avaliacoes;
     protected int idLivro;
+    protected int numeroDePaginas;
+
+    public Livro(LivroOpenLibrary livroOpen) {
+        this.titulo = livroOpen.title();
+        this.autor = livroOpen.authors() != null ?
+                livroOpen.authors().stream()
+                        .map(LivroOpenLibrary.Autor::name)
+                        .collect(Collectors.joining(", ")) : "Desconhecido";
+        this.numeroDePaginas = livroOpen.number_of_pages();
+        this.editora = livroOpen.publishers() != null ?
+                livroOpen.publishers().stream()
+                        .map(LivroOpenLibrary.Publisher::name)
+                        .collect(Collectors.joining(", ")) : "Desconhecido";
+    }
 
     public double getAvaliacoes() {
         return avaliacoes;
@@ -16,7 +32,7 @@ public class Livro implements Classificavel, Comparable<Livro>{
         return idLivro;
     }
 
-    public Livro(String titulo, Autor autor, String editora, String categoria) {
+    public Livro(String titulo, String autor, String editora, String categoria) {
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
@@ -29,7 +45,7 @@ public class Livro implements Classificavel, Comparable<Livro>{
         return titulo;
     }
 
-    public Autor getAutor() {
+    public String getAutor() {
         return autor;
     }
 
@@ -45,12 +61,11 @@ public class Livro implements Classificavel, Comparable<Livro>{
     public String toString() {
         return "Livro{" +
                 "titulo='" + titulo + '\'' +
-                ", autor='" + autor.getNome() + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numeroDePaginas=" + numeroDePaginas +
                 ", editora='" + editora + '\'' +
-                ", categoria='" + categoria + '\'' +
                 '}';
     }
-
 
     @Override
     public double obterMedia() {

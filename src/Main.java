@@ -2,6 +2,12 @@ import ModeloDeNegocios.Aluguel;
 import ModeloDeNegocios.Emprestimo;
 import Modelos.*;
 
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -9,25 +15,16 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Biblioteca biblioteca = new Biblioteca();
 
-        // Criar autores
-        Autor autor1 = new Autor( "J.K. Rowling");
-        Autor autor2 = new Autor("J.R.R. Tolkien");
-
-        // Adicionar autores à biblioteca
-        biblioteca.registrarAutor(autor1);
-        biblioteca.registrarAutor(autor2);
-
         // Criar livros
-        LivroFisico livroFisico1 = new LivroFisico( "Harry Potter e a Pedra Filosofal", autor1, "Warner","Fantasia",  5);
-        LivroDigital livroDigital1 = new LivroDigital("O Senhor dos Anéis: A Sociedade do Anel", autor2, "Amazon", "Fantasia");
+        LivroFisico livroFisico1 = new LivroFisico( "Harry Potter e a Pedra Filosofal", "Kj", "Warner","Fantasia",  5);
+        LivroDigital livroDigital1 = new LivroDigital("O Senhor dos Anéis: A Sociedade do Anel", "autor2", "Amazon", "Fantasia");
 
         // Adicionar livros à biblioteca
         biblioteca.registrarLivro(livroFisico1);
         biblioteca.registrarLivro(livroDigital1);
 
         // Adicionar livros aos autores
-        autor1.adicionarLivro(livroFisico1);
-        autor2.adicionarLivro(livroDigital1);
+
 
         // Criar usuários
         Usuario usuario1 = new Usuario("Alice");
@@ -56,6 +53,10 @@ public class Main {
         // Exibir estado final da biblioteca
         System.out.println("Estado final da biblioteca:");
         biblioteca.exibirEstado();
+
+        biblioteca.buscarLivroNaApiIsbn("9780439139595");
+
+
 
 
 
